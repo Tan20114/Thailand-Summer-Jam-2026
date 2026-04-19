@@ -6,6 +6,7 @@ public class RhythmBrick : MonoBehaviour
 {
     Rigidbody2D rb => GetComponent<Rigidbody2D>();
     BoxCollider2D collider => GetComponent<BoxCollider2D>();
+    SpriteRenderer sr => GetComponent<SpriteRenderer>();
 
     public static int id = 1;
 

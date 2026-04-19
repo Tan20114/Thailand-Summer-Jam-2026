@@ -3,6 +3,7 @@ using UnityEngine;
 public class waterWarn : MonoBehaviour
 {
     [SerializeField] GameObject warning;
+    [SerializeField] GameObject waterPrefab;
 
     private void Start()
     {
@@ -12,14 +13,28 @@ public class waterWarn : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Physics2D.OverlapBox(transform.position, Vector2.one, 0, LayerMask.GetMask("Danger")))
+        Collider2D col = Physics2D.OverlapBox(transform.position, Vector2.one, 0, LayerMask.GetMask("Danger"));
+
+        if (col)
         {
             warning.SetActive(true);
+            if (col.gameObject.CompareTag("Bullet"))
+            {
+                SpawnWater();
+            }
         }
         else
         {
             warning.SetActive(false);
         }
+    }
+
+    private void SpawnWater()
+    {
+        if (gameObject.name.Contains("t"))
+            Instantiate(waterPrefab, new Vector2(transform.position.x, 12), Quaternion.identity);
+        else
+            Instantiate(waterPrefab, new Vector2(-20, transform.position.y), Quaternion.Euler(0, 0, 90));
     }
 
     private void OnDrawGizmos()

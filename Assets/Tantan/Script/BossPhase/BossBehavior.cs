@@ -59,7 +59,7 @@ public class BossBehavior : Singleton<BossBehavior>
             yield return new WaitForSeconds(attackInterval * .2f);
             currentAttack.Stop();
 
-            if (attackQueue.attackQueue.Count > 0 )
+            if (attackQueue.attackQueue.Count > 0)
                 currentAttack = attackQueue.attackQueue.Dequeue();
         }
     }

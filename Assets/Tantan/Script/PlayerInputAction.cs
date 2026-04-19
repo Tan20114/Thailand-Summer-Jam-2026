@@ -107,7 +107,7 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""3e7caa09-15c3-4c7d-8253-71354b713c67"",
                     ""path"": ""<Keyboard>/space"",
-                    ""interactions"": ""Tap(duration=1E-15,pressPoint=1E-20)"",
+                    ""interactions"": ""Tap"",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Click"",

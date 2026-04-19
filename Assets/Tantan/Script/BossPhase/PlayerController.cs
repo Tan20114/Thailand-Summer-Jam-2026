@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -6,18 +7,20 @@ public class PlayerController : MonoBehaviour
 {
     Rigidbody2D rb => GetComponent<Rigidbody2D>();
     SpriteRenderer sr => GetComponent<SpriteRenderer>();
+    Collider2D col;
 
     PlayerInputAction action;
 
     [Header("References")]
     [SerializeField] LayerMask damageMask;
+    [SerializeField] GameObject tail;
 
     [Header("Properties")]
-    bool isDash = false;
-    bool isDashCooldown = false;
     [SerializeField] bool isInvincible = false;
     [SerializeField] Vector2 moveInput;
     [SerializeField] float hp = 4;
+    bool isDash = false;
+    bool isDashCooldown = false;
     float HP
     {
         get => hp;
@@ -28,6 +31,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float dashForce = 100f;
     [SerializeField] float dashDuration = 0.5f;
     [SerializeField] float dashCooldown = 1f;
+
+    [Header("Status")]
+    [SerializeField] bool isIce = false;
 
     private void Awake()
     {
@@ -56,11 +62,24 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (Physics2D.OverlapBox(transform.position, transform.localScale, 0, damageMask))
+        col = Physics2D.OverlapBox(transform.position, transform.localScale, 0, damageMask);
+
+        if (col)
         {
             if (!isInvincible)
+            {
+                if(col.gameObject.CompareTag("Water"))
+                {
+                    isIce = true;
+                }
                 TakeDamage();
+            }
         }
+    }
+
+    void ResetStat(float originalSpeed)
+    {
+        speed = originalSpeed;
     }
 
     private void FixedUpdate()
@@ -87,6 +106,8 @@ public class PlayerController : MonoBehaviour
         isDash = true;
         isInvincible = true;
 
+        tail.SetActive(true);
+
         Vector2 direction = moveInput.normalized;
 
         if (direction == Vector2.zero)
@@ -111,6 +132,9 @@ public class PlayerController : MonoBehaviour
 
         isInvincible = false;
         isDash = false;
+
+        tail.SetActive(false);
+
         StartCoroutine(DashCooldown());
     }
 
@@ -124,6 +148,10 @@ public class PlayerController : MonoBehaviour
     public void TakeDamage()
     {
         HP--;
+
+        if (isIce)
+            StartCoroutine(ResetIce());
+
         StartCoroutine(IFrame());
     }
 
@@ -131,9 +159,25 @@ public class PlayerController : MonoBehaviour
     {
         isInvincible = true;
         sr.color = new Color(1, 1, 1, .5f);
-        yield return new WaitForSeconds(5f);
+
+        yield return new WaitForSeconds(4f);
+
         isInvincible = false;
         sr.color = new Color(1, 1, 1, 1);
+    }
+
+    IEnumerator ResetIce()
+    {
+        float oSpeed = speed;
+        speed *= 2;
+        Camera.main.GetComponent<CameraShake>().Shake(.2f, .1f);
+        sr.color = new Color(0, 0, 1, .5f);
+
+        yield return new WaitForSeconds(.5f);
+
+        ResetStat(oSpeed);
+        isIce = false;
+        sr.color = new Color(1, 1, 1, sr.color.a);
     }
 
     void HealthVisual() => sr.material.SetFloat("_FillAmount",HP/maxHp);

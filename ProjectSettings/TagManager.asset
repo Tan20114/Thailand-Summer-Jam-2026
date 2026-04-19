@@ -8,6 +8,8 @@ TagManager:
   - BulletPool
   - Hand
   - Wall
+  - Bullet
+  - Water
   layers:
   - Default
   - TransparentFX

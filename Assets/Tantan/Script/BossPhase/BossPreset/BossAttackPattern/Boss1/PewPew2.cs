@@ -36,8 +36,10 @@ public class PewPew2 : AttackTemplate
         while (BossBehavior.Instance.isAttacking)
         {
             yield return new WaitForSeconds(interval);
-            pool.Spawn(spawnPoint.position, Quaternion.Euler(0f, 0f, spawnPoint.eulerAngles.z + zRotationOffset));
-            pool.Spawn(spawnPoint.position, Quaternion.Euler(0f, 0f, spawnPoint.eulerAngles.z - zRotationOffset));
+            for (int i = 0; i < 3; i++)
+            {
+                pool.Spawn(spawnPoint.position, Quaternion.Euler(0f, 0f, spawnPoint.eulerAngles.z + ((i % 2 == 0) ? zRotationOffset : -zRotationOffset)));
+            }           
         }
     }
 }

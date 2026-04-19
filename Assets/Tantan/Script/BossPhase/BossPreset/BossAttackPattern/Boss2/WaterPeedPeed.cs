@@ -1,17 +1,16 @@
+using System.Collections;
 using UnityEngine;
-
-enum type
-{
-    Pattern1,
-    Pattern2,
-    Pattern3
-}
 
 public class WaterPeedPeed : AttackTemplate
 {
+    Coroutine running;
+
     GameObject projectilePrefab;
     Transform[] spawnPoints;
     MonoBehaviour owner;
+
+    float interval = 5f;
+    int prevAttack = 0;
 
     public WaterPeedPeed(GameObject projectile, Transform[] spawnPoint, MonoBehaviour owner)
     {
@@ -20,45 +19,83 @@ public class WaterPeedPeed : AttackTemplate
         this.owner = owner;
     }
 
-    void Pattern1()
+    void Pattern(int index)
     {
-        for (int i = 0; i <= 16; i += 2)
+        switch (index)
         {
-            Object.Instantiate(projectilePrefab, new Vector2(spawnPoints[i].transform.position.x, 12), Quaternion.identity);
+            case 1:
+                for (int i = 0; i <= 16; i += 2)
+                {
+                    Object.Instantiate(projectilePrefab, new Vector2(spawnPoints[i].transform.position.x, 12), Quaternion.identity);
+                }
+                break;
+            case 2:
+                for (int i = 1; i <= 16; i += 2)
+                {
+                    Object.Instantiate(projectilePrefab, new Vector2(spawnPoints[i].transform.position.x, 12), Quaternion.identity);
+                }
+                break;
+            case 3:
+                for (int i = 17; i <= spawnPoints.Length; i += 2)
+                {
+                    Object.Instantiate(projectilePrefab, new Vector2(-20, spawnPoints[i].transform.position.y), Quaternion.Euler(0, 0, 90));
+                }
+                break;
+            case 4:
+                for (int i = 18; i <= spawnPoints.Length - 1; i += 2)
+                {
+                    Object.Instantiate(projectilePrefab, new Vector2(-20, spawnPoints[i].transform.position.y), Quaternion.Euler(0, 0, 90));
+                }
+                break;
+            case 5:
+                for (int i = 0; i <= 16; i += 4)
+                {
+                    Object.Instantiate(projectilePrefab, new Vector2(spawnPoints[i].transform.position.x, 12), Quaternion.identity);
+                    if (i + 1 <= 16)
+                        Object.Instantiate(projectilePrefab, new Vector2(spawnPoints[i + 1].transform.position.x, 12), Quaternion.identity);
+                }
+                break;
+            case 6:
+                for (int i = 2; i <= 16; i += 4)
+                {
+                    Object.Instantiate(projectilePrefab, new Vector2(spawnPoints[i].transform.position.x, 12), Quaternion.identity);
+                    Object.Instantiate(projectilePrefab, new Vector2(spawnPoints[i + 1].transform.position.x, 12), Quaternion.identity);
+                }
+                break;
         }
-    }
 
-    void Pattern2()
-    {
-        for (int i = 1; i <= 16; i += 2)
-        {
-            Object.Instantiate(projectilePrefab, new Vector2(spawnPoints[i].transform.position.x, 12), Quaternion.identity);
-        }
-    }
-
-    void Pattern3()
-    {
-        for (int i = 17; i <= spawnPoints.Length; i += 2)
-        {
-            Object.Instantiate(projectilePrefab, new Vector2(-20, spawnPoints[i].transform.position.y), Quaternion.Euler(0, 0, 90));
-        }
-    }
-
-    void Pattern4()
-    {
-        for (int i = 18; i <= spawnPoints.Length - 1; i += 2)
-        {
-            Object.Instantiate(projectilePrefab, new Vector2(-20, spawnPoints[i].transform.position.y), Quaternion.Euler(0, 0, 90));
-        }
+        
     }
 
     public void Execute()
     {
-        Pattern1();
+        running = owner.StartCoroutine(AttackCoroutine());
     }
 
     public void Stop()
     {
+        if (running != null)
+        {
+            owner.StopCoroutine(running);
+        }
+    }
 
+    IEnumerator AttackCoroutine()
+    {
+        while (BossBehavior.Instance.isAttacking)
+        {
+            int ranVal = 0;
+
+            do
+            {
+                ranVal = Random.Range(1, 5);
+            } 
+            while (ranVal == prevAttack);
+
+            Pattern(5);
+            prevAttack = ranVal;
+
+            yield return new WaitForSeconds(interval);
+        }
     }
 }

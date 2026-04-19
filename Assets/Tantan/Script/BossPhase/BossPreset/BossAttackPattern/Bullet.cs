@@ -8,6 +8,8 @@ public class Bullet : MonoBehaviour
 
     Rigidbody2D rb => GetComponent<Rigidbody2D>();
 
+    [Header("Properties")]
+    [SerializeField] bool isBouncy = false;
     [SerializeField] float speed = 5;
     [SerializeField] float lifeTime = 5;
 
@@ -27,7 +29,9 @@ public class Bullet : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Wall"))
         {
-            rb.linearVelocity = rb.linearVelocity * -1;
+            if (!isBouncy) return;
+
+            rb.linearVelocity *= -1;
         }
     }
 }
