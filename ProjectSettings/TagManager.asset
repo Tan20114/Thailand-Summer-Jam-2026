@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 3
   tags:
   - BrickPool
+  - BulletPool
+  - Hand
+  - Wall
   layers:
   - Default
   - TransparentFX
@@ -28,9 +31,9 @@ TagManager:
   - 
   - 
   - 
+  - Player
   - 
-  - 
-  - 
+  - Danger
   - 
   - PerfectBlock
   - GoodBlock

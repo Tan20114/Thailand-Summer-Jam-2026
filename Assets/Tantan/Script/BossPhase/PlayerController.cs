@@ -6,14 +6,15 @@ public class PlayerController : MonoBehaviour
 {
     Rigidbody2D rb => GetComponent<Rigidbody2D>();
     SpriteRenderer sr => GetComponent<SpriteRenderer>();
+
     PlayerInputAction action;
 
     [Header("References")]
-    [SerializeField] PlayerInput input;
+    [SerializeField] LayerMask damageMask;
 
     [Header("Properties")]
-    [SerializeField] bool isDash = false;
-    [SerializeField] bool isMove = false;
+    bool isDash = false;
+    bool isDashCooldown = false;
     [SerializeField] bool isInvincible = false;
     [SerializeField] Vector2 moveInput;
     [SerializeField] float hp = 4;
@@ -26,6 +27,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float speed = 5f;
     [SerializeField] float dashForce = 100f;
     [SerializeField] float dashDuration = 0.5f;
+    [SerializeField] float dashCooldown = 1f;
 
     private void Awake()
     {
@@ -52,6 +54,15 @@ public class PlayerController : MonoBehaviour
         action.Disable();
     }
 
+    private void Update()
+    {
+        if (Physics2D.OverlapBox(transform.position, transform.localScale, 0, damageMask))
+        {
+            if (!isInvincible)
+                TakeDamage();
+        }
+    }
+
     private void FixedUpdate()
     {
         if (isDash) return;
@@ -71,8 +82,10 @@ public class PlayerController : MonoBehaviour
     void Dash(InputAction.CallbackContext context)
     {
         if (isDash) return;
+        if (isDashCooldown) return;
 
         isDash = true;
+        isInvincible = true;
 
         Vector2 direction = moveInput.normalized;
 
@@ -96,8 +109,38 @@ public class PlayerController : MonoBehaviour
         rb.gravityScale = originalGravity;
         rb.linearVelocity = Vector2.zero;
 
+        isInvincible = false;
         isDash = false;
+        StartCoroutine(DashCooldown());
+    }
+
+    IEnumerator DashCooldown()
+    {
+        isDashCooldown = true;
+        yield return new WaitForSeconds(dashCooldown);
+        isDashCooldown = false;
+    }
+
+    public void TakeDamage()
+    {
+        HP--;
+        StartCoroutine(IFrame());
+    }
+
+    IEnumerator IFrame()
+    {
+        isInvincible = true;
+        sr.color = new Color(1, 1, 1, .5f);
+        yield return new WaitForSeconds(5f);
+        isInvincible = false;
+        sr.color = new Color(1, 1, 1, 1);
     }
 
     void HealthVisual() => sr.material.SetFloat("_FillAmount",HP/maxHp);
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireCube(transform.position, transform.localScale);
+    }
 }
