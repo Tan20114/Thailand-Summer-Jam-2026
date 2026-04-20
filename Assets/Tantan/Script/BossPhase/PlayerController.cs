@@ -2,6 +2,7 @@ using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -13,7 +14,12 @@ public class PlayerController : MonoBehaviour
 
     [Header("References")]
     [SerializeField] LayerMask damageMask;
+    [SerializeField] LayerMask sunMask;
     [SerializeField] GameObject tail;
+    [SerializeField] GameObject iceOverlay;
+    [SerializeField] GameObject powderOverlay;
+    [SerializeField] GameObject heatOverlay;
+    [SerializeField] Slider dadSlider;
 
     [Header("Properties")]
     [SerializeField] bool isInvincible = false;
@@ -31,9 +37,17 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float dashForce = 100f;
     [SerializeField] float dashDuration = 0.5f;
     [SerializeField] float dashCooldown = 1f;
+    float dadValue = 0f;
+    float DhadValue
+    {
+        get => dadValue;
+        set => dadValue = Mathf.Clamp(value, 0, dadSlider.maxValue);
+    }
 
     [Header("Status")]
     [SerializeField] bool isIce = false;
+    [SerializeField] bool isPowder = false;
+    [SerializeField] bool isHeat = false;
 
     private void Awake()
     {
@@ -68,12 +82,32 @@ public class PlayerController : MonoBehaviour
         {
             if (!isInvincible)
             {
-                if(col.gameObject.CompareTag("Water"))
+                if(col.gameObject.CompareTag("Bullet"))
+                {
+                    Bullet bul = col.GetComponent<Bullet>();
+
+                    if (bul)
+                        bul.Despawn(0);
+                }
+                else if(col.gameObject.CompareTag("Water"))
                 {
                     isIce = true;
                 }
+                else if (col.gameObject.CompareTag("Powder"))
+                {
+                    isPowder = true;
+                }
                 TakeDamage();
             }
+        }
+
+        DhadValue += Physics2D.OverlapBox(transform.position, transform.localScale, 0, sunMask) ? Time.deltaTime : -Time.deltaTime;
+
+        if (DhadValue >= dadSlider.maxValue)
+        {
+            DhadValue = 0;
+            isHeat = true;
+            TakeDamage();
         }
     }
 
@@ -92,6 +126,7 @@ public class PlayerController : MonoBehaviour
     private void LateUpdate()
     {
         HealthVisual();
+        UIVisualize();
     }
 
     void Move(InputAction.CallbackContext context) => moveInput = context.ReadValue<Vector2>();
@@ -152,6 +187,12 @@ public class PlayerController : MonoBehaviour
         if (isIce)
             StartCoroutine(ResetIce());
 
+        if (isPowder)
+            StartCoroutine(ResetPowder());
+
+        if (isHeat)
+            StartCoroutine(ResetHeatStroke());
+
         StartCoroutine(IFrame());
     }
 
@@ -160,7 +201,7 @@ public class PlayerController : MonoBehaviour
         isInvincible = true;
         sr.color = new Color(1, 1, 1, .5f);
 
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(2.5f);
 
         isInvincible = false;
         sr.color = new Color(1, 1, 1, 1);
@@ -168,19 +209,47 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator ResetIce()
     {
-        float oSpeed = speed;
         speed *= 2;
-        Camera.main.GetComponent<CameraShake>().Shake(.2f, .1f);
+        Camera.main.GetComponent<CameraShake>().Shake(2f, .1f, CameraShake.ShakeStyle.Vigorous);
         sr.color = new Color(0, 0, 1, .5f);
+
+        iceOverlay.SetActive(true);
 
         yield return new WaitForSeconds(.5f);
 
-        ResetStat(oSpeed);
+        speed /= 2;
+
+        ResetStat(speed);
+        iceOverlay.SetActive(false);
         isIce = false;
         sr.color = new Color(1, 1, 1, sr.color.a);
     }
 
+    IEnumerator ResetPowder()
+    {
+        powderOverlay.SetActive(true);
+        yield return new WaitForSeconds(2f);
+        powderOverlay.SetActive(false);
+        isPowder = false;
+    }
+
+    IEnumerator ResetHeatStroke()
+    {
+        heatOverlay.SetActive(true);
+        Camera.main.GetComponent<CameraShake>().Shake(2f, .5f, CameraShake.ShakeStyle.Smooth);
+        yield return new WaitForSeconds(2f);
+        heatOverlay.SetActive(false);
+        isHeat = false;
+    }
+
     void HealthVisual() => sr.material.SetFloat("_FillAmount",HP/maxHp);
+
+    void UIVisualize()
+    {
+        if(!dadSlider) return;
+
+        dadSlider.value = dadValue;
+    }
 
     private void OnDrawGizmos()
     {

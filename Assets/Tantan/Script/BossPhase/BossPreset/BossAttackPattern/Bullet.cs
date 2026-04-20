@@ -6,12 +6,12 @@ public class Bullet : MonoBehaviour
 {
     LeanGameObjectPool pool => GameObject.FindGameObjectWithTag("BulletPool").GetComponent<LeanGameObjectPool>();
 
-    Rigidbody2D rb => GetComponent<Rigidbody2D>();
+    protected Rigidbody2D rb => GetComponent<Rigidbody2D>();
 
     [Header("Properties")]
     [SerializeField] bool isBouncy = false;
-    [SerializeField] float speed = 5;
-    [SerializeField] float lifeTime = 5;
+    [SerializeField] protected float speed = 5;
+    [SerializeField] protected float lifeTime = 5;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void OnEnable()
@@ -22,7 +22,7 @@ public class Bullet : MonoBehaviour
 
         rb.linearVelocity = dir * speed;
         
-        pool.Despawn(gameObject, lifeTime);
+        Despawn(lifeTime);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -33,5 +33,11 @@ public class Bullet : MonoBehaviour
 
             rb.linearVelocity *= -1;
         }
+
+    }
+
+    public virtual void Despawn(float lifetime)
+    {
+        pool.Despawn(gameObject, lifetime);
     }
 }

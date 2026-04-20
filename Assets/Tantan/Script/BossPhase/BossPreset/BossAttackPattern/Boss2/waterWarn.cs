@@ -1,7 +1,11 @@
+using Lean.Pool;
 using UnityEngine;
 
 public class waterWarn : MonoBehaviour
 {
+    LeanGameObjectPool pool => GameObject.FindGameObjectWithTag("WaterPol").GetComponent<LeanGameObjectPool>();
+    LeanGameObjectPool bulletPool => GameObject.FindGameObjectWithTag("BulletPool").GetComponent<LeanGameObjectPool>();
+
     [SerializeField] GameObject warning;
     [SerializeField] GameObject waterPrefab;
 
@@ -17,11 +21,15 @@ public class waterWarn : MonoBehaviour
 
         if (col)
         {
-            warning.SetActive(true);
+            if (col.gameObject.name.Contains("Shockwave")) return;
+
             if (col.gameObject.CompareTag("Bullet"))
             {
                 SpawnWater();
+                bulletPool.Despawn(col.gameObject);
             }
+            else
+                warning.SetActive(true);
         }
         else
         {
@@ -32,9 +40,9 @@ public class waterWarn : MonoBehaviour
     private void SpawnWater()
     {
         if (gameObject.name.Contains("t"))
-            Instantiate(waterPrefab, new Vector2(transform.position.x, 12), Quaternion.identity);
+            pool.Spawn(new Vector2(transform.position.x, 12), Quaternion.identity);
         else
-            Instantiate(waterPrefab, new Vector2(-20, transform.position.y), Quaternion.Euler(0, 0, 90));
+            pool.Spawn(new Vector2(-20, transform.position.y), Quaternion.Euler(0, 0, 90));
     }
 
     private void OnDrawGizmos()

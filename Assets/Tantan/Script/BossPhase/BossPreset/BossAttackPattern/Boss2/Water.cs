@@ -1,9 +1,13 @@
+using Lean.Pool;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class Water : MonoBehaviour
 {
+    LeanGameObjectPool pool => GameObject.FindGameObjectWithTag("WaterPol").GetComponent<LeanGameObjectPool>();
+
     Rigidbody2D rb => GetComponent<Rigidbody2D>();
+    [SerializeField] bool isPooled;
     [SerializeField] float speed = 5f;
     [SerializeField] float lifetime = 5f;
     [SerializeField] Vector3 size;
@@ -13,13 +17,28 @@ public class Water : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        if (isPooled)
+            pool.Despawn(gameObject, lifetime);
+        else
+            Destroy(gameObject, lifetime);
+    }
+
+    private void OnEnable()
+    {
         rb.linearVelocity = (transform.eulerAngles.z == 90 ? Vector2.right : Vector2.down) * speed;
-        Destroy(gameObject, lifetime);
+        pool.Despawn(gameObject, lifetime);
+    }
+
+    private void OnDisable()
+    {
+        rb.linearVelocity = Vector2.zero;
     }
 
     private void Update()
     {
-        if(transform.eulerAngles.z != 90)
+        if (isPooled) return;
+
+        if (transform.eulerAngles.z != 90)
         {
             if (transform.position.y <= .1f)
             {

@@ -92,7 +92,7 @@ public class WaterPeedPeed : AttackTemplate
             } 
             while (ranVal == prevAttack);
 
-            Pattern(5);
+            Pattern(ranVal);
             prevAttack = ranVal;
 
             yield return new WaitForSeconds(interval);
