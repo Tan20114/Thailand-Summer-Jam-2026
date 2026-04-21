@@ -16,6 +16,10 @@ TagManager:
   - IceOverlay
   - Overlay
   - Dhad
+  - Perfect
+  - Good
+  - Bad
+  - Miss
   layers:
   - Default
   - TransparentFX

@@ -6,7 +6,6 @@ public class RhythmBrick : MonoBehaviour
 {
     Rigidbody2D rb => GetComponent<Rigidbody2D>();
     BoxCollider2D collider => GetComponent<BoxCollider2D>();
-    SpriteRenderer sr => GetComponent<SpriteRenderer>();
 
     public static int id = 1;
 
@@ -35,19 +34,32 @@ public class RhythmBrick : MonoBehaviour
     public void DespawnBlock()
     {
         NormalPhaseManager.Instance.allBrick.Remove(this);
+        NormalPhaseManager.Instance.OnNoteChanged();
         pool.Despawn(gameObject);
     }
 
     public void Check()
     {
         if (Physics2D.OverlapBox(transform.position, size, 0f, perfectMask))
-            Debug.Log("perfect");
+        {
+            NormalPhaseManager.Instance.OnPerfect();
+            Debug.Log("Perfect");
+        }
         else if (Physics2D.OverlapBox(transform.position, size, 0f, goodMask))
-            Debug.Log("good");
+        {
+            NormalPhaseManager.Instance.OnGood();
+            Debug.Log("Good");
+        }
         else if (Physics2D.OverlapBox(transform.position, size, 0f, badMask))
-            Debug.Log("bad");
+        {
+            NormalPhaseManager.Instance.OnBad();
+            Debug.Log("Bad");
+        }
         else
+        {
+            NormalPhaseManager.Instance.OnMiss();
             Debug.Log("Miss");
+        }
 
         DespawnBlock();
     }
