@@ -1,24 +1,28 @@
 using System.Collections;
 using UnityEngine;
 
-public class _13_Sandal : Minigame
+public class _13_Dood : Minigame
 {
     [Header("Minigame")]
     [SerializeField] SpriteRenderer background;
-    [SerializeField] Transform water;
-    [SerializeField] SpriteRenderer charSr;
+    [SerializeField] Transform waterSuck;
+    [SerializeField] Transform startPoint;
+    [SerializeField] Transform endPoint;
+    [SerializeField] SpriteRenderer charSR;
+    [SerializeField] SpriteRenderer charBG;
 
     [Header("Sprite")]
     [SerializeField] Sprite[] charSprite;
+    [SerializeField] Sprite[] charBg;
 
     public override void Bad()
     {
-        
+        StartCoroutine(Result(1, 2));
     }
 
     public override void Good()
     {
-        
+        StartCoroutine(Result(2,2));
     }
 
     public override void Interval()
@@ -43,27 +47,21 @@ public class _13_Sandal : Minigame
         float t = Mathf.InverseLerp(startX, endX, currentX);
         t = Mathf.Clamp01(t);
 
-        Vector3 startScale = new Vector3(2.5f, 2.5f, 2.5f); // adjust
-        Vector3 endScale = Vector3.one; // final scale
-
-        water.localScale = Vector3.Lerp(startScale, endScale, t);
-
-        float startZ = -11f; // adjust
-        float endZ = 0f;    // target depth
-
-        Vector3 pos = water.localPosition;
-        pos.z = Mathf.Lerp(startZ, endZ, t);
-        water.localPosition = pos;
+        waterSuck.position = Vector3.Lerp(
+            startPoint.position,
+            endPoint.position,
+            t
+        );
     }
 
     public override void Miss()
     {
-        
+        StartCoroutine(Result(1,2));
     }
 
     public override void Perfect()
     {
-        
+        StartCoroutine(Result(3,2));
     }
 
     public override void Reset()
@@ -76,8 +74,12 @@ public class _13_Sandal : Minigame
         Interval();
     }
 
-    IEnumerator Result(bool isSuccess, float duration)
+    IEnumerator Result(int index, float duration)
     {
+        charSR.sprite = charSprite[index];
+        charBG.sprite = charBg[index];
         yield return new WaitForSeconds(duration);
+        charSR.sprite = charSprite[0];
+        charBG.sprite = charBg[0];
     }
 }

@@ -11,7 +11,10 @@ public class DestroyBox : MonoBehaviour
         Collider2D obj = Physics2D.OverlapBox(transform.position, size, 0f, brickMask);
 
         if (obj)
+        {
             obj.GetComponent<RhythmBrick>().DespawnBlock();
+            NormalPhaseManager.Instance.OnMiss();
+        }
     }
 
     private void OnDrawGizmos()
