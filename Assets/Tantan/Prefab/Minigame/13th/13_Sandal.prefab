@@ -230,6 +230,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_13_Sandal
   perfectPoint: {fileID: 0}
+  comboPos: {x: 6.2, y: -2.75}
   background: {fileID: 2209409212507549887}
   hand: {fileID: 7720433246794738622}
   handGuide: {fileID: 7166669146700911957}

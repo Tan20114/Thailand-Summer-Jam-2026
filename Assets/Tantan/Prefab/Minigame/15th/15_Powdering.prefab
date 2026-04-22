@@ -416,6 +416,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_15_PapangSao
   perfectPoint: {fileID: 0}
+  comboPos: {x: 4, y: -3}
   background: {fileID: 1937984872153205528}
   hand: {fileID: 1002405820335946289}
   handGuide: {fileID: 1156175874065649331}

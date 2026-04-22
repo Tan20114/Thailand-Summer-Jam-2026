@@ -1,16 +1,16 @@
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class GameManager : Singleton<GameManager>
 {
     [Header("References")]
     [SerializeField] GameObject normalPhase;
     [SerializeField] GameObject bossPhase;
 
     [Header("Timer")]
-    float elaspedTime = 0;
+    public float elaspedTime = 0f;
+    public int step = 0;
     [SerializeField] float normalPhaseDuration = 30f;
 
-    // Update is called once per frame
     void Update()
     {
         elaspedTime += Time.deltaTime;
@@ -22,6 +22,8 @@ public class GameManager : MonoBehaviour
         }
         else
         {
+            NormalPhaseManager.Instance.isNormalPhase = false;
+            NormalPhaseManager.Instance.ResetMinigame();
             normalPhase.SetActive(false);
             bossPhase.SetActive(true);
         }

@@ -230,12 +230,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_14_Termnam
   perfectPoint: {fileID: 0}
+  comboPos: {x: -2.75, y: 0}
   background: {fileID: 8330006907396019348}
-  wongDeang: {fileID: 0}
+  wongDeang: {fileID: 8998071728795873748}
   charSR: {fileID: 8669411190277736561}
   result: {fileID: 5551997469339063612}
   result2: {fileID: 8067072885267988059}
   result3: {fileID: 3636604535608566483}
+  resultTime: 1
   charSprite:
   - {fileID: 21300000, guid: b6a67caef4359994d873da3284018200, type: 3}
   - {fileID: 21300000, guid: ffe2310e6e70b4846b398259f9f4be3f, type: 3}

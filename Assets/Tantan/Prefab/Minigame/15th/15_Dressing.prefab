@@ -598,6 +598,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_15_ChangeClothes
   perfectPoint: {fileID: 0}
+  comboPos: {x: -6.35, y: 2.3}
   background: {fileID: 3216276432302456613}
   curtain: {fileID: 8384163462422597656}
   curtainGuide: {fileID: 4577363020751100498}

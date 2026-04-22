@@ -13,6 +13,7 @@ public class DestroyBox : MonoBehaviour
         if (obj)
         {
             obj.GetComponent<RhythmBrick>().DespawnBlock();
+            ComboPoolSpawner.instance.Spawn(3,NormalPhaseManager.Instance.currentMinigame.comboPos, Quaternion.identity);
             NormalPhaseManager.Instance.OnMiss();
         }
     }

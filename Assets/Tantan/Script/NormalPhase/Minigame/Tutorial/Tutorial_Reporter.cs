@@ -12,6 +12,7 @@ public class Tutorial_Reporter : Minigame
     [SerializeField] GameObject resultObj;
     [SerializeField] SpriteRenderer resultRenderer;
     List<Vector2> position = new List<Vector2>();
+    [SerializeField] float resultTime = 1f;
 
     [Header("Sprite")]
     [SerializeField] Sprite[] watergunSprite;
@@ -25,12 +26,12 @@ public class Tutorial_Reporter : Minigame
 
     public override void Bad()
     {
-        StartCoroutine(Result(false, 2f));
+        StartCoroutine(Result(false, resultTime));
     }
 
     public override void Good()
     {
-        StartCoroutine(Result(true, 2f));
+        StartCoroutine(Result(true, resultTime));
     }
 
     public override void Interval()
@@ -84,12 +85,12 @@ public class Tutorial_Reporter : Minigame
 
     public override void Miss()
     {
-        StartCoroutine(Result(false, 2f));
+        StartCoroutine(Result(false, resultTime));
     }
 
     public override void Perfect()
     {
-        StartCoroutine(Result(true, 2f));
+        StartCoroutine(Result(true, resultTime));
     }
 
     public override void Reset()

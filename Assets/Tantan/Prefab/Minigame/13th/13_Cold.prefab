@@ -137,9 +137,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_13_Cold
   perfectPoint: {fileID: 0}
+  comboPos: {x: -5.5, y: -2.5}
   background: {fileID: 173381826091934334}
   water: {fileID: 3654969892706762747}
   charSr: {fileID: 3643645298239096945}
+  resultTime: 1
   charSprite:
   - {fileID: 21300000, guid: e37b9157a6624984eaeccf9ed1d41957, type: 3}
   - {fileID: 21300000, guid: 6c8bee6a2ba06b845ae98553b13afd35, type: 3}

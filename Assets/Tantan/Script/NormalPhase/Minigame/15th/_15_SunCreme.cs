@@ -36,6 +36,11 @@ public class _15_SunCreme : Minigame
         endPoint = creamPoints[1].position;
     }
 
+    private void OnDisable()
+    {
+        NormalPhaseManager.Instance.OnChangeNote -= OnChangedNote;
+    }
+
     private void OnChangedNote()
     {
         Count++;

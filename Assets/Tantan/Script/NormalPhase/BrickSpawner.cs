@@ -20,25 +20,24 @@ public class BrickSpawner : MonoBehaviour
     LeanGameObjectPool pool => GetComponent<LeanGameObjectPool>();
     #endregion
 
-    int step = 0;
     float targetTime = 0;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start() => targetTime = NormalPhaseManager.Instance.song.spawnTime[step];
+    void Start() => targetTime = NormalPhaseManager.Instance.song.spawnTime[GameManager.Instance.step];
 
     void Update()
     {
         if (!NormalPhaseManager.Instance.isNormalPhase) return;
-        if (step > NormalPhaseManager.Instance.song.spawnTime.Count - 1) return;
+        if (GameManager.Instance.step > NormalPhaseManager.Instance.song.spawnTime.Count - 1) return;
 
-        if (NormalPhaseManager.Instance.elaspedTime > targetTime)
+        if (GameManager.Instance.elaspedTime > targetTime)
         {
             SpawnBrick();
 
-            step++;
+            GameManager.Instance.step++;
 
-            if (step < NormalPhaseManager.Instance.song.spawnTime.Count)
-                targetTime = NormalPhaseManager.Instance.song.spawnTime[step];
+            if (GameManager.Instance.step < NormalPhaseManager.Instance.song.spawnTime.Count)
+                targetTime = NormalPhaseManager.Instance.song.spawnTime[GameManager.Instance.step];
         }
     }
 

@@ -411,6 +411,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_15_PickupFlower
   perfectPoint: {fileID: 0}
+  comboPos: {x: 5, y: 2.4}
   background: {fileID: 5634890270859483824}
   hand: {fileID: 6824103839772323228}
   handGuide: {fileID: 6496984333832771503}

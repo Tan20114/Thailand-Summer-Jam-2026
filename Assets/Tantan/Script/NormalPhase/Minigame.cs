@@ -4,6 +4,7 @@ public abstract class Minigame : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] protected Transform perfectPoint;
+    public Vector2 comboPos;
 
     public abstract void Perfect();
     public abstract void Good();

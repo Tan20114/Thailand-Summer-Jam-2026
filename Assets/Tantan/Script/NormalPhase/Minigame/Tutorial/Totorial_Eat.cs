@@ -17,9 +17,14 @@ public class Totorial_Eat : Minigame
     bool isTukked = false;
     int count = 0;
 
-    private void Start()
+    private void OnEnable()
     {
         NormalPhaseManager.Instance.OnChangeNote += OnChangedNote;
+    }
+    
+    private void OnDisable()
+    {
+        NormalPhaseManager.Instance.OnChangeNote -= OnChangedNote;
     }
 
     public override void Bad()
@@ -36,17 +41,30 @@ public class Totorial_Eat : Minigame
 
     public override void Interval()
     {
-        float distance = 0;
+        if (!NormalPhaseManager.Instance.currentBrick)
+            return;
 
-        if (NormalPhaseManager.Instance.currentBrick)
-            distance = Vector2.Distance(NormalPhaseManager.Instance.currentBrick.transform.position, perfectPoint.position);
+        float distance = Vector2.Distance(
+            NormalPhaseManager.Instance.currentBrick.transform.position,
+            perfectPoint.position
+        );
 
-        float macDistance = Vector2.Distance(NormalPhaseManager.Instance.brickStartPoint, perfectPoint.position);
+        float maxDistance = Vector2.Distance(
+            NormalPhaseManager.Instance.brickStartPoint,
+            perfectPoint.position
+        );
+
+        float currentX = NormalPhaseManager.Instance.currentBrick.transform.position.x;
+        float startX = NormalPhaseManager.Instance.brickStartPoint.x;
+        float endX = -0.25f;
+
+        float t = Mathf.InverseLerp(startX, endX, currentX);
+        t = Mathf.Clamp01(t);
 
         if (!isTukked)
-            hand.eulerAngles = new Vector3(0, 0, Mathf.Lerp(0, -39, distance / macDistance));
+            hand.eulerAngles = new Vector3(0, 0, Mathf.Lerp(-34.25f, -4.5f, t));
         else
-            hand.eulerAngles = new Vector3(0, 0, Mathf.Lerp(-39, 0, distance / macDistance));
+            hand.eulerAngles = new Vector3(0, 0, Mathf.Lerp(-4.5f, -34.25f, t));
     }
 
     public override void Miss()

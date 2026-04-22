@@ -1,6 +1,7 @@
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class BossBehavior : Singleton<BossBehavior>
 {
@@ -10,25 +11,29 @@ public class BossBehavior : Singleton<BossBehavior>
     public Transform[] outerSpawnPoints;
 
     [SerializeField] AttackQueue attackQueue;
+    [SerializeField] NormalSpawningPattern song;
 
     [Header("Properties")]
     public bool isAttacking = false;
     [SerializeField] int phase = 1;
-    [SerializeField] float attackInterval = 10f;
     AttackTemplate currentAttack;
-    [SerializeField] float elapsedTime = 0;
+    float attackStartTime;
+    float attackStopTime;
+    bool hasExecuted = false;
+    float targetTime = 0;
+    float step = 0;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         currentAttack = attackQueue.attackQueue.Dequeue();
-        StartCoroutine(Attack());
     }
 
     // Update is called once per frame
     void Update()
     {
         LookAt(GameObject.FindGameObjectWithTag("Player").transform);
+        AttackByTime();
     }
 
     void LookAt(Transform target)
@@ -39,28 +44,41 @@ public class BossBehavior : Singleton<BossBehavior>
         transform.rotation = Quaternion.Euler(0, 0, angle);
     }
 
-    IEnumerator Attack()
+    void AttackByTime()
     {
-        while (true)
+        if (NormalPhaseManager.Instance.isNormalPhase) return;
+
+        if (GameManager.Instance.step >= song.spawnTime.Count - 1)
+            return;
+
+        float currentTime = GameManager.Instance.elaspedTime;
+
+        float start = song.spawnTime[GameManager.Instance.step];
+        float end = song.spawnTime[GameManager.Instance.step + 1];
+
+        float interval = end - start;
+
+        attackStartTime = start;
+        attackStopTime = start + interval * 0.8f;
+
+        if (!hasExecuted && currentTime >= attackStartTime)
         {
-            elapsedTime = 0f;
+            if (currentAttack == null && attackQueue.attackQueue.Count > 0)
+                currentAttack = attackQueue.attackQueue.Dequeue();
 
-            isAttacking = true;
-            currentAttack.Execute();
+            currentAttack?.Execute();
+            hasExecuted = true;
+        }
 
-            while (elapsedTime < attackInterval * .8f)
-            {
-                elapsedTime += Time.deltaTime;
-                yield return null;
-            }
-
-            isAttacking = false;
-
-            yield return new WaitForSeconds(attackInterval * .2f);
-            currentAttack.Stop();
+        if (hasExecuted && currentTime >= attackStopTime)
+        {
+            currentAttack?.Stop();
+            hasExecuted = false;
 
             if (attackQueue.attackQueue.Count > 0)
                 currentAttack = attackQueue.attackQueue.Dequeue();
+
+            GameManager.Instance.step++;
         }
     }
 }

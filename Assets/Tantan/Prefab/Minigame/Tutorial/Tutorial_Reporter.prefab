@@ -692,6 +692,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tutorial_Reporter
   perfectPoint: {fileID: 0}
+  comboPos: {x: 3.5, y: -2}
   background: {fileID: 3136237841729833022}
   waterGun: {fileID: 6155588729105307836}
   aimSight:

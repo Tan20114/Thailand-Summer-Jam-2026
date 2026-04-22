@@ -324,6 +324,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Totorial_Eat
   perfectPoint: {fileID: 0}
+  comboPos: {x: -5.5, y: 2}
   background: {fileID: 3753946175656150606}
   hand: {fileID: 3577253521499646253}
   handGuide: {fileID: 7799825360538004343}

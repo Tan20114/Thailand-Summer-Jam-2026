@@ -604,6 +604,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_15_SunCreme
   perfectPoint: {fileID: 0}
+  comboPos: {x: -5.5, y: -2.5}
   background: {fileID: 37120494079349500}
   hand: {fileID: 4583114356812765818}
   handGuide: {fileID: 5327803672552818084}
