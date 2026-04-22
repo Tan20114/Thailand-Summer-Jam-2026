@@ -7,6 +7,7 @@ public class _13_Cold : Minigame
     [SerializeField] SpriteRenderer background;
     [SerializeField] Transform water;
     [SerializeField] SpriteRenderer charSr;
+    [SerializeField] float resultTime = 1f;
 
     [Header("Sprite")]
     [SerializeField] Sprite[] charSprite;
@@ -18,12 +19,12 @@ public class _13_Cold : Minigame
 
     public override void Bad()
     {
-        StartCoroutine(Result(false, 1f));
+        StartCoroutine(Result(false, resultTime));
     }
 
     public override void Good()
     {
-        StartCoroutine(Result(true, 1f));
+        StartCoroutine(Result(true, resultTime));
     }
 
     public override void Interval()
@@ -63,12 +64,12 @@ public class _13_Cold : Minigame
 
     public override void Miss()
     {
-        StartCoroutine(Result(false, 1f));
+        StartCoroutine(Result(false, resultTime));
     }
 
     public override void Perfect()
     {
-        StartCoroutine(Result(true, 1f));
+        StartCoroutine(Result(true, resultTime));
     }
 
     public override void Reset()

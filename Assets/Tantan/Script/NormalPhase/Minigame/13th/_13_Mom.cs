@@ -8,6 +8,7 @@ public class _13_Mom : Minigame
     [SerializeField] Transform wongDeang;
     [SerializeField] SpriteRenderer charSR;
     [SerializeField] SpriteRenderer result;
+    [SerializeField] float resultTime = 1f;
 
     [Header("Sprite")]
     [SerializeField] Sprite[] charSprite;
@@ -15,12 +16,12 @@ public class _13_Mom : Minigame
 
     public override void Bad()
     {
-        StartCoroutine(Result(1, 2));
+        StartCoroutine(Result(1, resultTime));
     }
 
     public override void Good()
     {
-        StartCoroutine(Result(0,2));
+        StartCoroutine(Result(0,resultTime));
     }
 
     public override void Interval()
@@ -66,12 +67,12 @@ public class _13_Mom : Minigame
 
     public override void Miss()
     {
-        StartCoroutine(Result(1,2));
+        StartCoroutine(Result(1,resultTime));
     }
 
     public override void Perfect()
     {
-        StartCoroutine(Result(0,2));
+        StartCoroutine(Result(0,resultTime));
     }
 
     public override void Reset()

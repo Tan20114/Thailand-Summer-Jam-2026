@@ -10,6 +10,7 @@ public class _13_Dood : Minigame
     [SerializeField] Transform endPoint;
     [SerializeField] SpriteRenderer charSR;
     [SerializeField] SpriteRenderer charBG;
+    [SerializeField] float resultTime = 1f;
 
     [Header("Sprite")]
     [SerializeField] Sprite[] charSprite;
@@ -17,12 +18,12 @@ public class _13_Dood : Minigame
 
     public override void Bad()
     {
-        StartCoroutine(Result(1, 2));
+        StartCoroutine(Result(1, resultTime));
     }
 
     public override void Good()
     {
-        StartCoroutine(Result(2,2));
+        StartCoroutine(Result(2, resultTime));
     }
 
     public override void Interval()
@@ -56,12 +57,12 @@ public class _13_Dood : Minigame
 
     public override void Miss()
     {
-        StartCoroutine(Result(1,2));
+        StartCoroutine(Result(1,resultTime));
     }
 
     public override void Perfect()
     {
-        StartCoroutine(Result(3,2));
+        StartCoroutine(Result(3,resultTime));
     }
 
     public override void Reset()
