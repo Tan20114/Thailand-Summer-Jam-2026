@@ -7672,6 +7672,8 @@ MonoBehaviour:
   elaspedTime: 0
   step: 0
   normalPhaseDuration: 45
+  score: 0
+  noteCount: 25
 --- !u!1 &1409518031
 GameObject:
   m_ObjectHideFlags: 0

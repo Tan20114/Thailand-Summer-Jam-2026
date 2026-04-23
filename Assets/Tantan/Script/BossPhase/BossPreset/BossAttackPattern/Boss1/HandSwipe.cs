@@ -14,6 +14,8 @@ public class HandSwipe : AttackTemplate
     MonoBehaviour owner;
 
     float interval = 3f;
+    bool isFlip1 = false;
+    bool isFlip2 = false;
 
     public HandSwipe(GameObject projectile, Transform[] spawnPoint, MonoBehaviour owner)
     {
@@ -48,26 +50,36 @@ public class HandSwipe : AttackTemplate
     {
         GameObject hand;
         if (first > 3)
-            hand = Object.Instantiate(projectilePrefab, spawnPoint1.position, Quaternion.Euler(0,0,90));
-        else
             hand = Object.Instantiate(projectilePrefab, spawnPoint1.position, Quaternion.identity);
+        else
+            hand = Object.Instantiate(projectilePrefab, spawnPoint1.position, Quaternion.Euler(0, 0, 90));
 
         hand.GetComponent<HandMoving>().target = spawnPoints[alt1];
+        hand.GetComponent<SpriteRenderer>().flipX = isFlip1;
 
         if (second > 3)
-            hand = Object.Instantiate(projectilePrefab, spawnPoint2.position, Quaternion.Euler(0, 0, 90));
-        else
             hand = Object.Instantiate(projectilePrefab, spawnPoint2.position, Quaternion.identity);
+        else
+            hand = Object.Instantiate(projectilePrefab, spawnPoint2.position, Quaternion.Euler(0, 0, 90));
 
         hand.GetComponent<HandMoving>().target = spawnPoints[alt2];
+        hand.GetComponent<SpriteRenderer>().flipX = isFlip2;
     }
 
     void RandomSpawnPoint()
     {
         first = Random.Range(0, spawnPoints.Length);
 
-        if (first % 2 == 0) alt1 = first + 1;
-        else alt1 = first - 1;
+        if (first % 2 == 0)
+        {
+            alt1 = first + 1;
+            isFlip1 = false;
+        }
+        else
+        {
+            alt1 = first - 1;
+            isFlip1 = true;
+        }
 
         do
         {
@@ -75,8 +87,16 @@ public class HandSwipe : AttackTemplate
         }
         while (second == first);
 
-        if (second % 2 == 0) alt2 = second + 1;
-        else alt2 = second - 1;
+        if (second % 2 == 0)
+        {
+            alt2 = second + 1;
+            isFlip2 = false;
+        }
+        else
+        {
+            alt2 = second - 1;
+            isFlip2 = true;
+        }
 
         spawnPoint1 = spawnPoints[first];
         spawnPoint2 = spawnPoints[second];

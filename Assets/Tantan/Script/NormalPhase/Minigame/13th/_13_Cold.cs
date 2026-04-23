@@ -12,6 +12,8 @@ public class _13_Cold : Minigame
     [Header("Sprite")]
     [SerializeField] Sprite[] charSprite;
 
+    bool isFlip = false;
+
     private void Start()
     {
         NormalPhaseManager.Instance.OnChangeNote += OnChangedNote;
@@ -88,8 +90,12 @@ public class _13_Cold : Minigame
 
     IEnumerator Result(bool isSuccess, float duration)
     {
+        isFlip = !isFlip;
+
         charSr.sprite = charSprite[isSuccess ? 0 : 1];
+        charSr.flipX = isFlip;
         yield return new WaitForSeconds(duration);
         charSr.sprite = charSprite[1];
+        charSr.flipX = false;
     }
 }

@@ -1,5 +1,4 @@
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class BossBehavior : Singleton<BossBehavior>
@@ -43,6 +42,9 @@ public class BossBehavior : Singleton<BossBehavior>
     {
         while (true)
         {
+            if (GameManager.Instance.step + 1 >= NormalPhaseManager.Instance.song.spawnTime.Count)
+                yield break;
+
             elapsedTime = 0f;
 
             isAttacking = true;

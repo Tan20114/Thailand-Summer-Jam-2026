@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d7410fd0e59afe4ba608e4a7282a90a, type: 3}
+  m_Name: Quote
+  m_EditorClassIdentifier: Assembly-CSharp::Quote
+  quotes:
+    _serializedList:
+    - Key: 0
+      Value:
+      - '"First time? No? Play something else!!"'
+      - by JUKAS
+    - Key: 1
+      Value:
+      - 
+      - 
+    - Key: 2
+      Value:
+      - 
+      - 
+    - Key: 3
+      Value:
+      - 
+      - 
+    - Key: 4
+      Value:
+      - 
+      - 
+    - Key: 5
+      Value:
+      - 
+      - 
+    - Key: 6
+      Value:
+      - '"Be Chill!! Better luck next time!!"'
+      - by Kaori20114
+    - Key: 7
+      Value:
+      - 
+      - 
+    - Key: 8
+      Value:
+      - 
+      - 
+    - Key: 9
+      Value:
+      - 
+      - 
+    - Key: 10
+      Value:
+      - 
+      - 

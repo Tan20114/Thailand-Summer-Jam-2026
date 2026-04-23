@@ -62,6 +62,8 @@ public class PlayerController : MonoBehaviour
         action.BossPhase.Move.canceled += StopMove;
 
         action.BossPhase.Dash.performed += Dash;
+
+        GameManager.Instance.OnGameEnded += OnEnded;
     }
 
     private void OnDisable()
@@ -102,6 +104,8 @@ public class PlayerController : MonoBehaviour
         }
 
         DhadValue += Physics2D.OverlapBox(transform.position, transform.localScale, 0, sunMask) ? Time.deltaTime : -Time.deltaTime;
+
+        GameOverCheck();
 
         if (DhadValue >= dadSlider.maxValue)
         {
@@ -249,6 +253,20 @@ public class PlayerController : MonoBehaviour
         if(!dadSlider) return;
 
         dadSlider.value = dadValue;
+    }
+
+    void GameOverCheck()
+    {
+        if (HP <= 0)
+        {
+            GameManager.Instance.EndGame();
+        }
+    }
+
+    void OnEnded()
+    {
+        GameManager.Instance.health = $"{HP}/{maxHp}";
+        GameManager.Instance.score += (HP / maxHp) * 50;
     }
 
     private void OnDrawGizmos()

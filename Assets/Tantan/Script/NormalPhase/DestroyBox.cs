@@ -14,6 +14,8 @@ public class DestroyBox : MonoBehaviour
         {
             obj.GetComponent<RhythmBrick>().DespawnBlock();
             ComboPoolSpawner.instance.Spawn(3,NormalPhaseManager.Instance.currentMinigame.comboPos, Quaternion.identity);
+            GameManager.Instance.CalculateScore(3);
+            GameManager.Instance.missCount++;
             NormalPhaseManager.Instance.OnMiss();
         }
     }
