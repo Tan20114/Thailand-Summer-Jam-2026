@@ -12,23 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac317ab0c930e7c45b680cf79fc5b5b6, type: 3}
   m_Name: Song 1
   m_EditorClassIdentifier: Assembly-CSharp::NormalSpawningPattern
-  halfTime: 45
+  halfTime: 29.25
   spawnTime:
   - 1
-  - 4
-  - 7
-  - 10
-  - 13
-  - 16
-  - 19
-  - 22
-  - 25
-  - 28
-  - 31
-  - 34
-  - 37
-  - 40
-  - 43
-  - 60
-  - 72
-  - 90

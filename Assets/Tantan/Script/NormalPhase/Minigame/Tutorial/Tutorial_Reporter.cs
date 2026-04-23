@@ -18,6 +18,8 @@ public class Tutorial_Reporter : Minigame
     [SerializeField] Sprite[] watergunSprite;
     [SerializeField] Sprite[] result;
 
+    bool isFlip = false;
+
     private void Start()
     {
         foreach (Transform t in aimSight)
@@ -62,6 +64,7 @@ public class Tutorial_Reporter : Minigame
         {
             aimSight[i].position = Vector2.Lerp(position[i], Vector2.zero, t);
         }
+        resultObj.GetComponent<SpriteRenderer>().flipX = isFlip;
     }
 
     void WaterGunVisulize(float t, float spawnRatio, float shootPoint)
@@ -106,6 +109,7 @@ public class Tutorial_Reporter : Minigame
     {
         foreach (GameObject obj in idleObj)
             obj.SetActive(false);
+        isFlip = !isFlip;
         resultRenderer.sprite = result[isSuccess ? 0 : 1];
         resultObj.SetActive(true);
         yield return new WaitForSeconds(duration);

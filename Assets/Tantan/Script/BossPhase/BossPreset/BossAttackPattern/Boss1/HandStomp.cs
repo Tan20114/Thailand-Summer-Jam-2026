@@ -1,5 +1,4 @@
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class HandStomp : MonoBehaviour
@@ -21,7 +20,7 @@ public class HandStomp : MonoBehaviour
     void Start()
     {
         sr.color = new Color(1, 0, 0, 0);
-        collider.enabled = true;
+        collider.enabled = false;
 
         warningEffect.SetActive(true);
 

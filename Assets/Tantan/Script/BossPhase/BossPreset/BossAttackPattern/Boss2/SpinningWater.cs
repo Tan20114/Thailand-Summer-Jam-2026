@@ -22,56 +22,63 @@ public class SpinningWater : AttackTemplate
 
     public void Execute()
     {
-        owner.StartCoroutine(DelayForAttack(2f));
+        owner.StartCoroutine(DelayForAttack(0));
     }
 
     public void Stop()
     {
+
     }
 
     IEnumerator DelayForAttack(float duration)
     {
+        Debug.Log("Spinning Water " + type);
         yield return new WaitForSeconds(duration);
 
         switch (type)
         {
             case 1:
+                Debug.Log("Executing SpinningWater type 1");
                 for (int i = 0; i < spawnPoint.Length; i++)
                 {
                     Object.Instantiate(projectilePrefab, BossBehavior.Instance.transform.position, Quaternion.Euler(0, 0, i * 90));
                 }
                 break;
             case 2:
+                Debug.Log("Executing SpinningWater type 2");
                 for (int i = 0; i < spawnPoint.Length; i++)
                 {
                     Object.Instantiate(projectilePrefab, spawnPoint[i].position, spawnPoint[i].rotation);
                 }
                 break;
             case 3:
+                Debug.Log("Executing SpinningWater type 3");
                 for (int i = 0; i < spawnPoint.Length; i++)
                 {
                     Object.Instantiate(projectilePrefab, spawnPoint[i].position, Quaternion.Euler(0, 0, i * 90));
                 }
                 break;
             case 4:
+                Debug.Log("Executing SpinningWater type 4");
                 for (int i = 1; i < 2; i++)
                 {
                     Object.Instantiate(projectilePrefab, BossBehavior.Instance.transform.position, Quaternion.Euler(0, 0, i * 90));
                 }
                 break;
             case 5:
+                Debug.Log("SunRadiant");
                 for (int i = 0; i < 6 ; i++)
                 {
                     owner.StartCoroutine(Radiant(i));
                 }
                 break;
         }
-        
-        IEnumerator Radiant(int index)
-        {
-            ExpandingWater ew = Object.Instantiate(projectilePrefab, BossBehavior.Instance.transform.position, Quaternion.Euler(0, 0, index * 60)).GetComponent<ExpandingWater>();
-            yield return new WaitForSeconds(ew.GetLifetime() * (ew.GetGrowTime() - .1f));
-            Object.Instantiate(projectilePrefab, BossBehavior.Instance.transform.position, Quaternion.Euler(0, 0, index * 60 + 30));
-        }
+    }
+
+    IEnumerator Radiant(int index)
+    {
+        ExpandingWater ew = Object.Instantiate(projectilePrefab, BossBehavior.Instance.transform.position, Quaternion.Euler(0, 0, index * 60)).GetComponent<ExpandingWater>();
+        yield return new WaitForSeconds(ew.GetLifetime() * (ew.GetGrowTime() - .1f));
+        Object.Instantiate(projectilePrefab, BossBehavior.Instance.transform.position, Quaternion.Euler(0, 0, index * 60 + 30));
     }
 }

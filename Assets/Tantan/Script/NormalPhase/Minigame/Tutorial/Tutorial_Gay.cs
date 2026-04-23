@@ -50,7 +50,7 @@ public class Tutorial_Gay : Minigame
         Vector3 perp = new Vector3(-dir.y, dir.x, 0f);
 
         float wobbleSpeed = 6f;
-        float wobbleAmount = .25f;
+        float wobbleAmount = .1f;
 
         float wobble =
             Mathf.Sin(Time.time * wobbleSpeed) +

@@ -29,16 +29,6 @@ public class _14_JDSand : Minigame
         }
     }
 
-    private void OnEnable()
-    {
-        NormalPhaseManager.Instance.OnChangeNote += OnChangedNote;
-    }
-
-    private void OnDisable()
-    {
-        NormalPhaseManager.Instance.OnChangeNote -= OnChangedNote;
-    }
-
     public override void Bad()
     {
         StartCoroutine(Result(2, resultTime));
@@ -46,6 +36,7 @@ public class _14_JDSand : Minigame
 
     public override void Good()
     {
+        Tier++;
         StartCoroutine(Result(1, resultTime));
     }
 
@@ -89,6 +80,7 @@ public class _14_JDSand : Minigame
 
     public override void Perfect()
     {
+        Tier++;
         StartCoroutine(Result(0, resultTime));
     }
 
@@ -131,10 +123,5 @@ public class _14_JDSand : Minigame
         sandGuide.SetActive(true);
         charSR.sprite = characterSprite[0];
         sandEffect.SetActive(false);
-    }
-
-    private void OnChangedNote()
-    {
-        Tier++;
     }
 }

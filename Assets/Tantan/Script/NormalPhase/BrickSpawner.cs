@@ -20,13 +20,14 @@ public class BrickSpawner : MonoBehaviour
     LeanGameObjectPool pool => GetComponent<LeanGameObjectPool>();
     #endregion
 
-    float targetTime = 0;
+    [SerializeField] float targetTime = 0;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start() => targetTime = NormalPhaseManager.Instance.song.spawnTime[GameManager.Instance.step];
 
     void Update()
     {
+        if (targetTime <= 0) return;
         if (!NormalPhaseManager.Instance.isNormalPhase) return;
         if (GameManager.Instance.step > NormalPhaseManager.Instance.song.spawnTime.Count - 1) return;
 

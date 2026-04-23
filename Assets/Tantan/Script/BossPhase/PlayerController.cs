@@ -146,7 +146,7 @@ public class PlayerController : MonoBehaviour
         Vector2 direction = moveInput.normalized;
 
         if (direction == Vector2.zero)
-            direction = Vector2.right;
+            direction = Vector2.zero;
 
         StartCoroutine(DashCoroutine(direction));
     }

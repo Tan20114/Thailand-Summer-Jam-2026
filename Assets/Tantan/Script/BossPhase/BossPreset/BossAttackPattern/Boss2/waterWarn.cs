@@ -7,7 +7,6 @@ public class waterWarn : MonoBehaviour
     LeanGameObjectPool bulletPool => GameObject.FindGameObjectWithTag("BulletPool").GetComponent<LeanGameObjectPool>();
 
     [SerializeField] GameObject warning;
-    [SerializeField] GameObject waterPrefab;
 
     private void Start()
     {

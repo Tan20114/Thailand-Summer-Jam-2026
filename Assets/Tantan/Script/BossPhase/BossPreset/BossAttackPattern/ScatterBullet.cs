@@ -29,7 +29,8 @@ public class ScatterBullet : Bullet
 
             angle += BossBehavior.Instance.transform.eulerAngles.z * Mathf.Deg2Rad;
 
-            Instantiate(smolBulletPrefab, transform.position, Quaternion.Euler(0, 0, angle * Mathf.Rad2Deg));
+            GameObject go = Instantiate(smolBulletPrefab, transform.position, Quaternion.Euler(0, 0, angle * Mathf.Rad2Deg));
+            Destroy(go, 3);
         }
 
         GameObject areaDam = Instantiate(areaDamagePrafab, transform.position, Quaternion.identity);
