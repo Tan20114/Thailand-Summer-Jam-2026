@@ -51,25 +51,25 @@ public class RhythmBrick : MonoBehaviour
         {
             NormalPhaseManager.Instance.OnPerfect();
             ComboPoolSpawner.instance.Spawn(0,NormalPhaseManager.Instance.currentMinigame.comboPos, Quaternion.identity);
-            Debug.Log($"Note[{BrickSpawner.count++}] {(elaspedTime > 3.9f ? "Late" : "Before")} by : {Mathf.Abs(elaspedTime - 3.9f)} Rating : Perfect");
+            Debug.Log($"Note[{BrickSpawner.count++}] || Offset : {(elaspedTime > 3.9f ? "Late +" : "Before -")}{Mathf.Abs(elaspedTime - 3.9f)} || Rating : Perfect");
         }
         else if (Physics2D.OverlapBox(transform.position, size, 0f, goodMask))
         {
             NormalPhaseManager.Instance.OnGood();
             ComboPoolSpawner.instance.Spawn(1,NormalPhaseManager.Instance.currentMinigame.comboPos, Quaternion.identity);
-            Debug.Log($"Note[{BrickSpawner.count++}] {(elaspedTime > 3.9f ? "Late" : "Before")} by : {Mathf.Abs(elaspedTime - 3.9f)} Rating : Good");
+            Debug.Log($"Note[{BrickSpawner.count++}] || Offset : {(elaspedTime > 3.9f ? "Late +" : "Before -")}{Mathf.Abs(elaspedTime - 3.9f)} || Rating : Good");
         }
         else if (Physics2D.OverlapBox(transform.position, size, 0f, badMask))
         {
             NormalPhaseManager.Instance.OnBad();
             ComboPoolSpawner.instance.Spawn(2,NormalPhaseManager.Instance.currentMinigame.comboPos, Quaternion.identity);
-            Debug.Log($"Note[{BrickSpawner.count++}] {(elaspedTime > 3.9f ? "Late" : "Before")} by : {Mathf.Abs(elaspedTime - 3.9f)} Rating : Bad");
+            Debug.Log($"Note[{BrickSpawner.count++}] || Offset : {(elaspedTime > 3.9f ? "Late +" : "Before -")}{Mathf.Abs(elaspedTime - 3.9f)} || Rating : Bad");
         }
         else
         {
             NormalPhaseManager.Instance.OnMiss();
             ComboPoolSpawner.instance.Spawn(3,NormalPhaseManager.Instance.currentMinigame.comboPos, Quaternion.identity);
-            Debug.Log($"Note[{BrickSpawner.count++}] {(elaspedTime > 3.9f ? "Late" : "Before")} by : {Mathf.Abs(elaspedTime - 3.9f)} Rating : Miss");
+            Debug.Log($"Note[{BrickSpawner.count++}] || Offset : {(elaspedTime > 3.9f ? "Late +" : "Before -")}{Mathf.Abs(elaspedTime - 3.9f)} || Rating : Miss");
         }
 
         elaspedTime = 0;

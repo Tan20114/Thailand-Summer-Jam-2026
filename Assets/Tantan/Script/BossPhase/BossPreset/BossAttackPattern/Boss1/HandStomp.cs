@@ -19,7 +19,7 @@ public class HandStomp : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        sr.color = new Color(1, 0, 0, 0);
+        sr.color = new Color(1, 1, 1, 0);
         collider.enabled = false;
 
         warningEffect.SetActive(true);
@@ -43,7 +43,7 @@ public class HandStomp : MonoBehaviour
     {
         yield return new WaitForSeconds(waitTime);
         yield return new WaitForSeconds(.1f);
-        sr.color = new Color(1, 0, 0, 1);
+        sr.color = new Color(1, 1, 1, 1);
         collider.enabled = true;
     }
 }
