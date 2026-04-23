@@ -15,8 +15,8 @@ public class Eye : MonoBehaviour
     [SerializeField] bool isFollow = false;
     [SerializeField] bool isAttack = false;
     [SerializeField] float stopRange = 1.25f;
-    [SerializeField] float speed = 5f;
-    [SerializeField] float chargedTime = 2;  
+    [SerializeField] float speed = 3f;
+    [SerializeField] float chargedTime = 1.75f;  
     [SerializeField] float attackTime = 2;
     [SerializeField] float lifeTime = 5f;
 

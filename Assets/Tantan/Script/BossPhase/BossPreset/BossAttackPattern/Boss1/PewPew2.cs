@@ -11,7 +11,7 @@ public class PewPew2 : AttackTemplate
     Transform spawnPoint;
     MonoBehaviour owner;
 
-    float interval = 1f;
+    float interval = .25f;
     float zRotationOffset = 15f;
 
     public PewPew2(GameObject projectile, Transform spawnPoint, MonoBehaviour owner)

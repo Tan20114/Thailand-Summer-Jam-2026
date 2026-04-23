@@ -11,7 +11,7 @@ public class PewPew1 : AttackTemplate
     Transform spawnPoint;
     MonoBehaviour owner;
 
-    float interval = 1f;
+    float interval = .5f;
 
     public PewPew1(GameObject projectile, Transform spawnPoint, MonoBehaviour owner)
     {
