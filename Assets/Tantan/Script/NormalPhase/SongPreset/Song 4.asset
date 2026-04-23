@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::NormalSpawningPattern
   halfTime: 69
   spawnTime:
-  - 1.37
-  - 3.28
+  - 4
   - 5.15
   - 6.99
   - 8.94
