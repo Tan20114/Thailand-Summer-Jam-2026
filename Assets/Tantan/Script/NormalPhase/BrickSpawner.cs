@@ -17,6 +17,8 @@ public class BrickSpawner : MonoBehaviour
         }
     }
 
+    public static int count = 0;
+
     LeanGameObjectPool pool => GetComponent<LeanGameObjectPool>();
     #endregion
 

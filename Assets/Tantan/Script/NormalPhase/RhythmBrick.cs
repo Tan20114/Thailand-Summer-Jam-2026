@@ -19,6 +19,8 @@ public class RhythmBrick : MonoBehaviour
     [SerializeField] Vector2 size = Vector2.one;
     [SerializeField] float speed = 10;
 
+    float elaspedTime = 0;
+
     private void Start()
     {
         gameObject.name = $"note {id++}";
@@ -31,6 +33,11 @@ public class RhythmBrick : MonoBehaviour
         pool = GameObject.FindGameObjectWithTag("BrickPool").GetComponent<LeanGameObjectPool>();
     }
 
+    private void Update()
+    {
+        elaspedTime += Time.deltaTime;
+    }
+
     public void DespawnBlock()
     {
         NormalPhaseManager.Instance.allBrick.Remove(this);
@@ -40,29 +47,28 @@ public class RhythmBrick : MonoBehaviour
 
     public void Check()
     {
+        Debug.Log($"Note[{BrickSpawner.count++}] {(elaspedTime > 3.9f ? "Late" : "Before")} by : {Mathf.Abs(elaspedTime - 3.9f)}");
+        elaspedTime = 0;
+
         if (Physics2D.OverlapBox(transform.position, size, 0f, perfectMask))
         {
             NormalPhaseManager.Instance.OnPerfect();
             ComboPoolSpawner.instance.Spawn(0,NormalPhaseManager.Instance.currentMinigame.comboPos, Quaternion.identity);
-            Debug.Log("Perfect");
         }
         else if (Physics2D.OverlapBox(transform.position, size, 0f, goodMask))
         {
             NormalPhaseManager.Instance.OnGood();
             ComboPoolSpawner.instance.Spawn(1,NormalPhaseManager.Instance.currentMinigame.comboPos, Quaternion.identity);
-            Debug.Log("Good");
         }
         else if (Physics2D.OverlapBox(transform.position, size, 0f, badMask))
         {
             NormalPhaseManager.Instance.OnBad();
             ComboPoolSpawner.instance.Spawn(2,NormalPhaseManager.Instance.currentMinigame.comboPos, Quaternion.identity);
-            Debug.Log("Bad");
         }
         else
         {
             NormalPhaseManager.Instance.OnMiss();
             ComboPoolSpawner.instance.Spawn(3,NormalPhaseManager.Instance.currentMinigame.comboPos, Quaternion.identity);
-            Debug.Log("Miss");
         }
 
         DespawnBlock();
