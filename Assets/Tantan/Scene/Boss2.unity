@@ -2085,6 +2085,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73683d02a3f24b14680ff1bb58b9bc07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BrickSpawner
+  targetTime: 0
 --- !u!1 &302834743
 GameObject:
   m_ObjectHideFlags: 0
@@ -3697,6 +3698,77 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1486777616}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &717056374
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1691141390}
+    m_Modifications:
+    - target: {fileID: 530822882883848696, guid: 8f4a750d629456b45b3bc3d578d97837, type: 3}
+      propertyPath: m_Name
+      value: EndScreen
+      objectReference: {fileID: 0}
+    - target: {fileID: 530822882883848696, guid: 8f4a750d629456b45b3bc3d578d97837, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1599391571881129132, guid: 8f4a750d629456b45b3bc3d578d97837, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 505.34442
+      objectReference: {fileID: 0}
+    - target: {fileID: 1599391571881129132, guid: 8f4a750d629456b45b3bc3d578d97837, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 333.88004
+      objectReference: {fileID: 0}
+    - target: {fileID: 1599391571881129132, guid: 8f4a750d629456b45b3bc3d578d97837, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1599391571881129132, guid: 8f4a750d629456b45b3bc3d578d97837, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1599391571881129132, guid: 8f4a750d629456b45b3bc3d578d97837, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1599391571881129132, guid: 8f4a750d629456b45b3bc3d578d97837, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1599391571881129132, guid: 8f4a750d629456b45b3bc3d578d97837, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1599391571881129132, guid: 8f4a750d629456b45b3bc3d578d97837, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1599391571881129132, guid: 8f4a750d629456b45b3bc3d578d97837, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1599391571881129132, guid: 8f4a750d629456b45b3bc3d578d97837, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8f4a750d629456b45b3bc3d578d97837, type: 3}
+--- !u!4 &717056375 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1599391571881129132, guid: 8f4a750d629456b45b3bc3d578d97837, type: 3}
+  m_PrefabInstance: {fileID: 717056374}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &717056376 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 530822882883848696, guid: 8f4a750d629456b45b3bc3d578d97837, type: 3}
+  m_PrefabInstance: {fileID: 717056374}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &729323375
 GameObject:
   m_ObjectHideFlags: 0
@@ -7422,11 +7494,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   normalPhase: {fileID: 1113314981}
   bossPhase: {fileID: 1382177768}
+  resultPanel: {fileID: 717056376}
   bl: {fileID: 1215316907}
   source: {fileID: 1599220119}
   elaspedTime: 0
   step: 0
   normalPhaseDuration: 102
+  score: 0
+  noteCount: 29
+  perfectCount: 0
+  goodCount: 0
+  badCount: 0
+  missCount: 0
+  combo: 0
+  maxCombo: 0
+  health: 
 --- !u!1 &1409518031
 GameObject:
   m_ObjectHideFlags: 0
@@ -8991,6 +9073,7 @@ Transform:
   m_Children:
   - {fileID: 1113314982}
   - {fileID: 1382177769}
+  - {fileID: 717056375}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1714568296
