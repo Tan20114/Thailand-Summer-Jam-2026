@@ -11,6 +11,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Tantan/Scene/SongSelection.unity
     guid: a9eb6d7927ccbcc46813c5626b92b0c2
+  - enabled: 1
+    path: Assets/Tantan/Scene/Tutorial.unity
+    guid: 30896c677af722b4b93ca1670ae56c68
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

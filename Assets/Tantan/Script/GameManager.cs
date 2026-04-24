@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -10,6 +11,7 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] GameObject normalPhase;
     [SerializeField] GameObject bossPhase;
     [SerializeField] GameObject resultPanel;
+    [SerializeField] GameObject[] tutorialPage;
     [SerializeField] BossLoader bl;
     [SerializeField] AudioSource source;
 
@@ -35,10 +37,15 @@ public class GameManager : Singleton<GameManager>
 
     bool isBossLoaded = false;
     bool isGameEnded = false;
+    [HideInInspector] public bool isTutorial = false;
 
     private void Start()
     {
         normalPhaseDuration = NormalPhaseManager.Instance.song.halfTime;
+        if (index == 0 && !GlobalManager.Instance.tutorialIn)
+        {
+            tutorialPage[0].SetActive(true);
+        }
     }
 
     void Update()
@@ -55,13 +62,13 @@ public class GameManager : Singleton<GameManager>
             NormalPhaseManager.Instance.isNormalPhase = false;
             NormalPhaseManager.Instance.ResetMinigame();
             normalPhase.SetActive(false);
-            LoadBoss();
             bossPhase.SetActive(true);
+            LoadBoss();
         }
 
         ComboCounter();
 
-        if (!source.isPlaying && !isGameEnded)
+        if (!source.isPlaying && !isGameEnded && !isTutorial)
         {
             EndGame(true);
         }
@@ -71,7 +78,17 @@ public class GameManager : Singleton<GameManager>
     {
         if (isBossLoaded) return;
         isBossLoaded = true;
-        bl.Load();
+        
+        bl.Load(() => Check());
+    }
+
+    void Check()
+    {
+        if (index == 0 && !GlobalManager.Instance.tutorialIn)
+        {
+            GlobalManager.Instance.tutorialIn = true;
+            tutorialPage[1].SetActive(true);
+        }
     }
 
     void ComboCounter()

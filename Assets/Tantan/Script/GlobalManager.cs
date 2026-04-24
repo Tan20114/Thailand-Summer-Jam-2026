@@ -5,6 +5,7 @@ public class GlobalManager : SingletonPersistant<GlobalManager>
     int enterTime = 0;
 
     [Header("Level Clearance")]
+    public bool tutorialIn = false;
     public bool tutorialCleared = false;
     public bool day1Cleared = false;
     public bool day2Cleared = false;
