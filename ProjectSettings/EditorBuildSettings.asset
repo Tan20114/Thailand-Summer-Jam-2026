@@ -14,6 +14,15 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Tantan/Scene/Tutorial.unity
     guid: 30896c677af722b4b93ca1670ae56c68
+  - enabled: 1
+    path: Assets/Tantan/Scene/Boss1.unity
+    guid: c28f037d9e9946a4eabf9a87a2029d99
+  - enabled: 1
+    path: Assets/Tantan/Scene/Boss2.unity
+    guid: 214650842e2d3a741bdeb4c3bafaaee8
+  - enabled: 1
+    path: Assets/Tantan/Scene/Boss3.unity
+    guid: 82f749b68d96de84aa1e2cc87324bfb3
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
