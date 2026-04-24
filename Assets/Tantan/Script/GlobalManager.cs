@@ -31,7 +31,7 @@ public class GlobalManager : SingletonPersistant<GlobalManager>
         while (true)
         {
             SaveProgress();
-            yield return new WaitForSecondsRealtime(180);
+            yield return new WaitForSecondsRealtime(120f);
         }
     }
 
