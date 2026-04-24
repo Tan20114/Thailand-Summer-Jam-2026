@@ -7,17 +7,16 @@ public class BossLoader : MonoBehaviour
     [SerializeField] Animator transAnimator;
     [SerializeField] float animTime = 1f;
 
-    public IEnumerator LoadBoss(Action a)
+    public IEnumerator LoadBoss()
     {
         transAnimator.SetTrigger("BossIn");
         yield return new WaitForSecondsRealtime(animTime);
         transAnimator.SetTrigger("BossOut");
-        a?.Invoke();
     }
 
-    public void Load(Action action)
+    public void Load()
     {
-        StartCoroutine(LoadBoss(action));
+        StartCoroutine(LoadBoss());
     }
 
     public void CamShake()

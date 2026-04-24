@@ -11,7 +11,8 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] GameObject normalPhase;
     [SerializeField] GameObject bossPhase;
     [SerializeField] GameObject resultPanel;
-    [SerializeField] GameObject[] tutorialPage;
+    [SerializeField] GameObject tutorialPage;
+    [SerializeField] CanvasGroup pausePage;
     [SerializeField] BossLoader bl;
     [SerializeField] AudioSource source;
 
@@ -38,13 +39,14 @@ public class GameManager : Singleton<GameManager>
     bool isBossLoaded = false;
     bool isGameEnded = false;
     [HideInInspector] public bool isTutorial = false;
+    bool isPause = false;
 
     private void Start()
     {
         normalPhaseDuration = NormalPhaseManager.Instance.song.halfTime;
         if (index == 0 && !GlobalManager.Instance.tutorialIn)
         {
-            tutorialPage[0].SetActive(true);
+            tutorialPage.SetActive(true);
         }
     }
 
@@ -68,7 +70,7 @@ public class GameManager : Singleton<GameManager>
 
         ComboCounter();
 
-        if (!source.isPlaying && !isGameEnded && !isTutorial)
+        if (!source.isPlaying && !isGameEnded && !isTutorial && !isPause)
         {
             EndGame(true);
         }
@@ -79,16 +81,7 @@ public class GameManager : Singleton<GameManager>
         if (isBossLoaded) return;
         isBossLoaded = true;
         
-        bl.Load(() => Check());
-    }
-
-    void Check()
-    {
-        if (index == 0 && !GlobalManager.Instance.tutorialIn)
-        {
-            GlobalManager.Instance.tutorialIn = true;
-            tutorialPage[1].SetActive(true);
-        }
+        bl.Load();
     }
 
     void ComboCounter()
@@ -150,5 +143,45 @@ public class GameManager : Singleton<GameManager>
             3 => 0,   // Miss
             _ => 0
         };
+    }
+
+    public void TogglePause()
+    {
+        isPause = !isPause;
+
+        if (isPause)
+            Pause();
+        else
+            Unpause();
+    }
+
+    void Pause()
+    {
+        isPause = true;
+
+        pausePage.alpha = 1;
+
+        Time.timeScale = 0;
+        AudioListener.pause = true;
+    }
+
+    void Unpause()
+    {
+        isPause = false;
+
+        pausePage.alpha = 0;
+
+        Time.timeScale = 1;
+        AudioListener.pause = false;
+    }
+
+    private void OnApplicationFocus(bool focus)
+    {
+        if (isTutorial) return;
+
+        if (!focus)
+            Pause();
+        else
+            Unpause();
     }
 }

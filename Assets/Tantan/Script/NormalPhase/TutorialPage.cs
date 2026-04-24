@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class TutorialPage : MonoBehaviour
 {
-    [SerializeField] AudioSource source;
     [SerializeField] float lifetime = 0;
+    [SerializeField] Sprite[] sprite;
 
     private void OnEnable()
     {
@@ -23,7 +23,9 @@ public class TutorialPage : MonoBehaviour
 
     IEnumerator Timer()
     {
-        yield return new WaitForSecondsRealtime(lifetime);
+        yield return new WaitForSecondsRealtime(lifetime / 2);
+        GetComponent<SpriteRenderer>().sprite = sprite[1];
+        yield return new WaitForSecondsRealtime(lifetime / 2);
         gameObject.SetActive(false);
     }
 }

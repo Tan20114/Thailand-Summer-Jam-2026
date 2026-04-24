@@ -23,6 +23,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Tantan/Scene/Boss3.unity
     guid: 82f749b68d96de84aa1e2cc87324bfb3
+  - enabled: 1
+    path: Assets/Tantan/Scene/Credit.unity
+    guid: cb73ac7b40b54a543952d27d7fa12934
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

@@ -52,7 +52,7 @@ public class HandSwipe : AttackTemplate
         if (first > 3)
             hand = Object.Instantiate(projectilePrefab, spawnPoint1.position, Quaternion.identity);
         else
-            hand = Object.Instantiate(projectilePrefab, spawnPoint1.position, Quaternion.Euler(0, 0, 90));
+            hand = Object.Instantiate(projectilePrefab, spawnPoint1.position, Quaternion.Euler(0, 0, -90));
 
         hand.GetComponent<HandMoving>().target = spawnPoints[alt1];
         hand.GetComponent<SpriteRenderer>().flipX = isFlip1;
@@ -60,7 +60,7 @@ public class HandSwipe : AttackTemplate
         if (second > 3)
             hand = Object.Instantiate(projectilePrefab, spawnPoint2.position, Quaternion.identity);
         else
-            hand = Object.Instantiate(projectilePrefab, spawnPoint2.position, Quaternion.Euler(0, 0, 90));
+            hand = Object.Instantiate(projectilePrefab, spawnPoint2.position, Quaternion.Euler(0, 0, -90));
 
         hand.GetComponent<HandMoving>().target = spawnPoints[alt2];
         hand.GetComponent<SpriteRenderer>().flipX = isFlip2;
