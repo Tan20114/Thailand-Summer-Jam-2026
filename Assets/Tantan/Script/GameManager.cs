@@ -6,6 +6,7 @@ public class GameManager : Singleton<GameManager>
     public Action OnGameEnded;
 
     [Header("References")]
+    [SerializeField] int index = 0;
     [SerializeField] GameObject normalPhase;
     [SerializeField] GameObject bossPhase;
     [SerializeField] GameObject resultPanel;
@@ -62,7 +63,7 @@ public class GameManager : Singleton<GameManager>
 
         if (!source.isPlaying && !isGameEnded)
         {
-            EndGame();
+            EndGame(true);
         }
     }
 
@@ -81,7 +82,7 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
-    public void EndGame()
+    public void EndGame(bool isClear)
     {
         Debug.Log("Game Ended");
 
@@ -92,8 +93,32 @@ public class GameManager : Singleton<GameManager>
         normalPhase.SetActive(false);
         resultPanel.SetActive(true);
 
+        UpdateGlobal(isClear);
+
         OnGameEnded?.Invoke();
-        Time.timeScale = 0f;
+    }
+
+    void UpdateGlobal(bool isCleared)
+    {
+        switch (index)
+        {
+            case 0:
+                GlobalManager.Instance.tutorialCleared = isCleared;
+                GlobalManager.Instance.tutorialProgress = score;
+                break;
+            case 1:
+                GlobalManager.Instance.day1Cleared = isCleared;
+                GlobalManager.Instance.day1Progress = score;
+                break;
+            case 2:
+                GlobalManager.Instance.day2Cleared = isCleared;
+                GlobalManager.Instance.day2Progress = score;
+                break;
+            case 3:
+                GlobalManager.Instance.day3Cleared = isCleared;
+                GlobalManager.Instance.day3Progress = score;
+                break;
+        }
     }
 
     public void CalculateScore(int type)

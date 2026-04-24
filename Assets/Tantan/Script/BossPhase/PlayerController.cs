@@ -259,7 +259,7 @@ public class PlayerController : MonoBehaviour
     {
         if (HP <= 0)
         {
-            GameManager.Instance.EndGame();
+            GameManager.Instance.EndGame(false);
         }
     }
 

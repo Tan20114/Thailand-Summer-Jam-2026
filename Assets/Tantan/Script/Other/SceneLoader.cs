@@ -14,20 +14,8 @@ public class SceneLoader : MonoBehaviour
         SceneManager.LoadScene(index);
     }
 
-    public IEnumerator ExitGame()
-    {
-        transAnimator.SetTrigger("Exit");
-        yield return new WaitForSecondsRealtime(animTime);
-        Application.Quit();
-    }
-
     public void Load(int index)
     {
         StartCoroutine(LoadScene(index));
-    }
-
-    public void Exit()
-    {
-        StartCoroutine(ExitGame());
     }
 }
