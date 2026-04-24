@@ -17,6 +17,7 @@ public class TutorialPage : MonoBehaviour
     private void OnDisable()
     {
         GameManager.Instance.isTutorial = false;
+        GlobalManager.Instance.tutorialIn = true;
         AudioListener.pause = false;
         Time.timeScale = 1;
     }

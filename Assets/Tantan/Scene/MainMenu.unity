@@ -1417,11 +1417,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ec37ba24b1dca4438ebd8760d2b5985, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GlobalManager
-  tutorialIn: 0
-  tutorialCleared: 0
-  day1Cleared: 0
-  day2Cleared: 0
-  day3Cleared: 0
+  tutorialIn: 1
+  tutorialCleared: 1
+  day1Cleared: 1
+  day2Cleared: 1
+  day3Cleared: 1
   tutorialProgress: 0
   day1Progress: 0
   day2Progress: 0

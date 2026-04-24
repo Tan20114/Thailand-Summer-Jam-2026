@@ -624,8 +624,8 @@ MonoBehaviour:
   dadSlider: {fileID: 1340026576}
   isInvincible: 0
   moveInput: {x: 0, y: 0}
-  hp: 50
-  maxHp: 50
+  hp: 8
+  maxHp: 8
   speed: 3.5
   dashForce: 10
   dashDuration: 0.2
