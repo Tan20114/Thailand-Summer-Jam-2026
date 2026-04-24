@@ -9,7 +9,7 @@ public class PewPewScatter : AttackTemplate
     GameObject toShoot;
     MonoBehaviour owner;
 
-    float interval = 1f;
+    float interval = 1.25f;
 
     public PewPewScatter(GameObject projectile, Transform spawnPoint, MonoBehaviour owner)
     {

@@ -11,7 +11,7 @@ public class PewPewDiagon : AttackTemplate
     Transform[] spawnPoint;
     MonoBehaviour owner;
 
-    float interval = 2f;
+    float interval = 1f;
     float radius = 1.5f;
     int attackCount = 0;
 
