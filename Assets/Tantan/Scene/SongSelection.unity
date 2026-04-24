@@ -202,7 +202,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 46811601}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2094635173}
+        m_TargetAssemblyTypeName: SceneLoader, Assembly-CSharp
+        m_MethodName: Load
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &46811601
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -253,6 +265,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 129c9933cd9bebf4dae4677851baa229, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SelectionButton
+  type: 1
   sprite:
   - {fileID: 400699159, guid: adf94948e615e0a44b8a510acd00b55b, type: 3}
   - {fileID: 796243001, guid: adf94948e615e0a44b8a510acd00b55b, type: 3}
@@ -558,7 +571,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 307516170}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2094635173}
+        m_TargetAssemblyTypeName: SceneLoader, Assembly-CSharp
+        m_MethodName: Load
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 5
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &307516170
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -609,6 +634,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 129c9933cd9bebf4dae4677851baa229, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SelectionButton
+  type: 1
   sprite:
   - {fileID: -1686543611, guid: adf94948e615e0a44b8a510acd00b55b, type: 3}
   - {fileID: 382357437, guid: adf94948e615e0a44b8a510acd00b55b, type: 3}
@@ -844,6 +870,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 129c9933cd9bebf4dae4677851baa229, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SelectionButton
+  type: 1
   sprite:
   - {fileID: -2059568607, guid: adf94948e615e0a44b8a510acd00b55b, type: 3}
   - {fileID: 293537450, guid: adf94948e615e0a44b8a510acd00b55b, type: 3}
@@ -1020,7 +1047,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 679684244}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2094635173}
+        m_TargetAssemblyTypeName: SceneLoader, Assembly-CSharp
+        m_MethodName: Load
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 4
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &679684244
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1071,6 +1110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 129c9933cd9bebf4dae4677851baa229, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SelectionButton
+  type: 1
   sprite:
   - {fileID: 132159308, guid: adf94948e615e0a44b8a510acd00b55b, type: 3}
   - {fileID: -137756, guid: adf94948e615e0a44b8a510acd00b55b, type: 3}
@@ -1204,7 +1244,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 857601348}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2094635173}
+        m_TargetAssemblyTypeName: SceneLoader, Assembly-CSharp
+        m_MethodName: Load
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 5
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &951410252
 GameObject:
   m_ObjectHideFlags: 0
@@ -1324,7 +1376,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 951410254}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2094635173}
+        m_TargetAssemblyTypeName: SceneLoader, Assembly-CSharp
+        m_MethodName: Load
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1052090708
 GameObject:
   m_ObjectHideFlags: 0
@@ -1581,7 +1645,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1060200825}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2094635173}
+        m_TargetAssemblyTypeName: SceneLoader, Assembly-CSharp
+        m_MethodName: Load
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 4
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1239478340
 GameObject:
   m_ObjectHideFlags: 0
