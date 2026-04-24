@@ -5566,9 +5566,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 997366851}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 783215c81ddc43448876263b6372d7d2, type: 3}
+  m_Script: {fileID: 11500000, guid: 044c7478704374c4a8001041eacb9b61, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Boss2AttackQueue
+  m_EditorClassIdentifier: Assembly-CSharp::Boss4AttackQueue
 --- !u!1 &1009088268
 GameObject:
   m_ObjectHideFlags: 0
@@ -7261,6 +7261,59 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bea548ee812c99c42ad0dff2921b439d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_15_PickupFlower
+--- !u!1 &1273938332
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1273938334}
+  - component: {fileID: 1273938333}
+  m_Layer: 0
+  m_Name: GlobalManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1273938333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1273938332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ec37ba24b1dca4438ebd8760d2b5985, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GlobalManager
+  tutorialIn: 0
+  tutorialCleared: 0
+  day1Cleared: 0
+  day2Cleared: 0
+  day3Cleared: 0
+  tutorialProgress: 0
+  day1Progress: 0
+  day2Progress: 0
+  day3Progress: 0
+--- !u!4 &1273938334
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1273938332}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.11946, y: -0.18523, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1274425566
 GameObject:
   m_ObjectHideFlags: 0
@@ -7658,7 +7711,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06cf90206c172c645b941462e648cc07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
-  index: 0
+  index: 3
   normalPhase: {fileID: 1113314981}
   bossPhase: {fileID: 1382177768}
   resultPanel: {fileID: 2138266657}
@@ -7959,10 +8012,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BossBehavior
   projectilePrefab:
-  - {fileID: 4090201722999552103, guid: 9fcae1ed919c40c458a02a6548b6a8b2, type: 3}
-  - {fileID: 7756040353386304879, guid: 3af5550c19b5943488ac10f9ce992a84, type: 3}
-  - {fileID: 5618595482855552923, guid: 3c45edfd993be8847a9d43ef86a87cc2, type: 3}
-  - {fileID: 5618595482855552923, guid: 28334aac1b9025141be56789d2fba456, type: 3}
+  - {fileID: 2753316823054466914, guid: e7969be4d9fb3ec418b9488983c9f5f8, type: 3}
+  - {fileID: 2753316823054466914, guid: d2a2e493c8790174393567865782d096, type: 3}
+  - {fileID: 7756040353386304879, guid: 23d0b286274ced8429ec30ececab392f, type: 3}
+  - {fileID: 4485227434471316652, guid: 6698ffb947c7040448371b97a4021ab5, type: 3}
   innerSpawnPoints:
   - {fileID: 1964605055}
   - {fileID: 1470421676}
@@ -11149,3 +11202,4 @@ SceneRoots:
   - {fileID: 1078593909}
   - {fileID: 358381704}
   - {fileID: 1240357241}
+  - {fileID: 1273938334}
